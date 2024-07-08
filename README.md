@@ -118,6 +118,20 @@ This will result in the config:
 }
 ```
 
+### Nodemon
+
+Uses default run config for `nodemon`:
+```
+{
+  "plugins": ["nodemon"]
+}
+```
+This will result in:
+```
+{
+  "run": ["npx", "nodemon", "-w", "index.js", ".", "{port}"]
+}
+```
 
 # Running
 
