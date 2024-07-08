@@ -22,7 +22,8 @@ Each server will need to have a config file
 ```
 {
   "record": <DNS RECORD TO USE>,
-  "run": <COMMAND TO RUN YOUR SERVER>
+  "run": <COMMAND TO RUN YOUR SERVER>,
+  "stop": <COMMAND TO STOP THE SERVER>
 }
 ```
 
@@ -46,6 +47,22 @@ Example:
   "run": ["python", "-m", "http.server", "-d", ".", "--bind", "127.0.0.1", "{port}"]
 }
 ```
+
+## Stop
+
+The command should be an array of arguments.
+The pattern `{pid}` will be replaced with the
+process ID of the server's job.
+If `stop` is not specified or is `null`, `SIGINT`
+will be sent directly to the server's job.
+
+Example:
+```
+{
+  "stop": ["screen", "-S", "{pid}", "-X", "stuff", "^D"]
+}
+```
+
 
 # Running
 
