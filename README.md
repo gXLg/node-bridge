@@ -49,6 +49,6 @@ Example:
 
 # Running
 
-Run the setup using `node .`.
+Run the setup using `node .`
 
-To exit, press `Ctrl+C`.
+To exit, press `Ctrl+C`
