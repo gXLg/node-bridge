@@ -18,6 +18,7 @@
     const command = runlist[server];
     const cwd = dir[server];
     const port = services[server];
+    console.log("Starting server for", server, "on port", port);
     runner.start(command, cwd, port);
   }
 
