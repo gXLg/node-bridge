@@ -1,6 +1,6 @@
 # node-bridge
 A Node.js script to manage Cloudflare tunnels
-for multiple domains on a single server.
+for multiple hostnames on a single server.
 
 # Setup
 
@@ -18,7 +18,8 @@ for multiple domains on a single server.
 
 # Tunnel
 
-This script will automatically create a tunnel.
+This script will automatically create a tunnel,
+configure it and the records for all hostnames and run it.
 It uses my old project [`namae`](https://github.com/gXLg/namae)
 to generate a unique funny name for the tunnel.
 
@@ -29,7 +30,7 @@ Each server will need to have a config file
 `node-brigde.json` with following data:
 ```
 {
-  "record": <DNS RECORD TO USE>,
+  "record": <HOSTNAME TO USE>,
   "run": <COMMAND TO RUN YOUR SERVER>,
   "stop": <COMMAND TO STOP THE SERVER>,
   "plugins": <PLUGINS TO APPLY ON STARTUP>
@@ -38,8 +39,10 @@ Each server will need to have a config file
 
 ## Record
 
-The record is a DNS, including domains and subdomains.
+The record is a hostname, including domains and subdomains.
 For example you can use `example.org`, `another.example.com`, etc.
+The script will automatically install a CNAME record on that
+hostname if you own the domain.
 
 ## Run
 
@@ -76,10 +79,13 @@ Example:
 
 Plugins can simplify writing your `run` and `stop` commands.
 Plugins are specified as an array and applied in the same order
-as they were listes in the config.
+as they were listed in the config.
 
 Each plugin receives the current configuration and modifies it,
 the final configuration is used for starting and stopping the server.
+
+Plugins modify only `run` and `stop` configs, but can also use
+`record` for internal processing.
 
 ### Shell
 
@@ -93,6 +99,8 @@ Example:
   "plugins": ["shell"]
 }
 ```
+
+If your OS does not provide `sh`, you can not use this plugin.
 
 ### Screen
 
@@ -118,6 +126,8 @@ This will result in the config:
 }
 ```
 
+In order to use this plugin, external tool `screen` must be installed.
+
 ### Nodemon
 
 Uses default run config for `nodemon`:
@@ -132,6 +142,17 @@ This will result in:
   "run": ["npx", "nodemon", "-w", "index.js", ".", "{port}"]
 }
 ```
+
+In order to use this plugin, external node package `nodemon` must be installed.
+
+## Processes
+
+Any process run from the script may produce output on stdout or stderr.
+This output is not captured, and if any errors occur, there will be no sign
+about it. Before running `node-bridge`, please make sure, that all the
+run and stop commands are actually working. If you want to see the output,
+you might want to redirect it to somewhere else, for example, using the `screen` plugin
+or the `tee` command.
 
 # Running
 
