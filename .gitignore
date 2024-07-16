@@ -131,4 +131,4 @@ dist
 
 # this project
 .tunnel/
-cloudflare.json
+config.json
