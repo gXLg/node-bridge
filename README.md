@@ -11,8 +11,9 @@ for multiple hostnames on a single server.
 5. Create `cloudflare.json` with following data:
 ```
 {
-  "api_key": <CLOUDFLARE API KEY>,
-  "email": <CLOUDFLARE ACCOUNT EMAIL>
+  "api_key": <Cloudflare API key>,
+  "email": <Cloudflare account Email>,
+  "binary": [optional: custom path to the cloudflared binary]
 }
 ```
 
