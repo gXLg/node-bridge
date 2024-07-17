@@ -35,6 +35,17 @@ and is named `config.json`, it has following options:
 * Required: no
 * Description: [cloudflared tunnel docs](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/configure-tunnels/tunnel-run-parameters/#protocol)
 
+## Example
+A common configuration on a system, where
+you don't have an administrator account, would be:
+```
+{
+  "api_key": "...",
+  "email": "...",
+  "binary": "/home/gxlg/bin/cloudflared",
+  "protocol": "http2"
+}
+```
 
 # Tunnel
 This script will automatically create a tunnel,
