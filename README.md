@@ -1,7 +1,14 @@
+# 🚧 Archived Repository 🚧
+
+This repository has been archived and is no longer actively maintained. It was originally developed as a starting point for a new, improved setup, which now has its own repository:
+
+[<kbd>gXLg Cluster</kdb>](https://github.com/gXLg-dev/gxlg-cluster)
+
+Feel free to check out the new project for the latest features and updates!
+
 # node-bridge
 A Node.js script to manage Cloudflare tunnels
 for multiple hostnames on a single server.
-
 
 # Setup
 1. Clone this repo
